@@ -1,0 +1,4 @@
+$(function () {
+    $('.gallery').gallery();
+  });
+  
