@@ -1,4 +1,4 @@
-/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+
 
 html {
     color: #222;
@@ -52,9 +52,6 @@ textarea {
 }
 
 
-/* ===== Initializr Styles ==================================================
-   Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
-   ========================================================================== */
 
 body {
     font: 16px/26px Helvetica, Helvetica Neue, Arial;
@@ -65,9 +62,6 @@ body {
     margin: 0 5%;
 }
 
-/* ===================
-    ALL: Orange Theme
-   =================== */
 
 .header-container {
     border-bottom: 20px solid #e44d26;
