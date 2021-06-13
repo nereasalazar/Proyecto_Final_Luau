@@ -65,32 +65,107 @@
           <label for="inputNumInvitados">Numero de Invitados</label>
           <input type="text" class="form-control" id="NumInvitados" />
         </div>
-        <div class="form-row row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" />
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip" />
-          </div>
-        </div>
+
+        <br>
+
         <div class="form-group">
+          <label for="inputCRegresiva">Añadir cuenta regresiva</label>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck" />
-            <label class="form-check-label" for="gridCheck">
-              Check me out
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioCRegresiva1">
+            <label class="form-check-label" for="flexCRegresiva1">
+              Si
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioCRegresiva2" checked>
+            <label class="form-check-label" for="CRegresiva2">
+              No
             </label>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+
+        <br>
+
+        <div class="form-group">
+          <label for="inputAgasajado">Petición de Colaboración/Regalo</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioRegalo1">
+            <label class="form-check-label" for="flexRadioRegalo1">
+              Si
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioRegalo2" checked>
+            <label class="form-check-label" for="flexRadioRegalo2">
+              No
+            </label>
+          </div>
+        </div>
+
+      <br>        
+
+      <div class="form-group">
+        <label for="inputCbuFormFiesta">CBU</label>
+        <input type="text" class="form-control" id="CbuFormFiesta" />
+      </div>
+
+      <br>
+
+      <div class="form-group">
+
+      <label for="input">Se realiza Misa</label>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioMisa1">
+        <label class="form-check-label" for="flexRadioMisa1">
+          Si
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioMisa2" checked>
+        <label class="form-check-label" for="flexRadioMisa2">
+          No
+        </label>
+      </div>
+
+      <br>
+
+      </div>
+
+      <div class="form-group">
+        <label for="inputIglesia">Iglesia</label>
+        <input type="text" class="form-control" id="Iglesia" />
+      </div>
+
+      <br>
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="horaMisa" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Hora
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="minutosMisa" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Minutos
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+
+
+      <br>
+      <button type="submit" class="btn btn-primary">Siguiente</button>
       </form>
     </div>
     <script
