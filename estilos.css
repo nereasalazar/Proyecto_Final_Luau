@@ -18,3 +18,34 @@
     padding: 50px;
 
 }
+
+#cuentaRegresiva{
+    display: felx;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.simply-section{
+    background-color: antiquewhite;
+    width: 70px;
+    height: 70px;
+    margin: 0 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.simply-amount{
+    display: block;
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.simply.word{
+
+    font-weight: 200;
+    font-size: 30px;
+
+}
