@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="estilos.css" />
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,600,700,900&display=swap" rel="stylesheet">
-    <title>Pagina Tarjeta</title>
-  </head>
-  <body background="imagenes/knitting250px_@2X.png">
  
     <!--Imagen de la Tarjeta-->
     <div class="container">
@@ -43,10 +26,10 @@
             <div class="card-body">
               <h5 class="card-title">¡Estas invitado a nuestra Fiesta!</h5>
               <h6 class="card-subtitle mb-2 text-muted">
-                Día: 7 julio de 2021
+                Día: {{tarjeta.diaevento}}
               </h6>
               <p class="card-text">
-                La misa se realizará en: Iglesia Virgen de la Merced
+                La misa se realizará en: {{tarjeta.lugarmisa}}
               </p>
               <form action="class="container-fluid justify-content-start"">
                 <button class="btn btn-outline-success me-2" type="button">
@@ -100,7 +83,7 @@
             <br>
             <br>
             <p>Si deseas hacernos un regalo o colaborarnos nuestro CBU es:</p>
-            <p>0456983123458906009321</p>
+            <p>{{{ cbu }}}</p>
           </div>
         </div>
       </div>
@@ -108,5 +91,3 @@
     <br />
     <script src="js/simplyCountdown.min.js"></script>
     <script src="js/countdown.js"></script>
-  </body>
-</html>
