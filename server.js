@@ -12,7 +12,7 @@ let usuarios =
         },
         {
             user: "pablo@luau.com",
-            pass: "38088"
+            pass: "123"
         },
         {
             user: "pepe",
@@ -26,16 +26,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../html/index.html"));
+    res.render(path.join(__dirname,"html/index.html"));
 });
 
 app.post("/login", function (req, res) {
     for (let i = 0; i < usuarios.length; i++) {
         if (usuarios[i].user === req.body.email && usuarios[i].pass === req.body.password) {
-            res.sendFile(path.join(__dirname, "../html/panel_usuario.html"));
+            res.sendFile(path.join(__dirname, "html/panel_usuario.html"));
         }
     }
-    res.sendFile(path.join(__dirname, "../html/index.html"));
+    res.sendFile(path.join(__dirname, "html/index.html"));
 
 });
 
@@ -63,15 +63,21 @@ app.post("/registro",function(request,response){
 
 app.get("/nuevoevento", function(request,response){
 
-    response.sendFile(path.join(__dirname,"../html/formulario_fiesta.html"));
+    response.sendFile(path.join(__dirname,"html/formulario_fiesta.html"));
 
 })
 
 app.get("/miseventos", function(request,response){
 
-    response.sendFile(path.join(__dirname,"../html/tabla_eventos.html"));
+    response.sendFile(path.join(__dirname,"html/tabla_eventos.html"));
 
 })
+
+app.post("/pantallatarjeta",function(request,response){
+
+    response.sendFile(path.join(__dirname,"html/pantalla_tarjeta.html"))
+})
+
 
 // Inicio server
 app.listen(PUERTO, function () {

@@ -10,13 +10,20 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/gallery.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/estilos.css" />
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js"></script>
+    <script src="../js/gallery.js"></script>
+    <script src="../js/main.js"></script>
 
     <title>Datos Fiesta</title>
   </head>
   <body background="imagenes/knitting250px_@2X.png">
     <div class="general">
-      <form>
+      <form action="/pantallatarjeta" method="post">
         <div class="form-group">
           <label for="inputDiaEvento">Día del Evento</label>
           <input
@@ -205,7 +212,60 @@
           <input class="form-control" type="file" id="imagenTarjeta" />
         </div>
         <br />
-        <button type="submit" class="btn btn-primary">Siguiente</button>
+        <!-- <h2>Selecciona una Plantilla</h2>
+        <div class="gallery">
+          <div class="row">
+            <div class="col-3">
+              <div class="thumbs">
+                <div
+                  class="thumb active"
+                  style="background-image: url(../imagenes/card1.jpg)"
+                ></div>
+                <div
+                  class="thumb"
+                  style="background-image: url(../imagenes/card2.jpg)"
+                ></div>
+                <div
+                  class="thumb"
+                  style="background-image: url(../imagenes/card3.jpg)"
+                ></div>
+                <div
+                  class="thumb"
+                  style="background-image: url(../imagenes/card4.jpg)"
+                ></div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="images">
+                <div class="image active">
+                  <div
+                    class="content"
+                    style="background-image: url(../imagenes/card1.jpg)"
+                  ></div>
+                </div>
+                <div class="image">
+                  <div
+                    class="content"
+                    style="background-image: url(../imagenes/card2.jpg)"
+                  ></div>
+                </div>
+                <div class="image">
+                  <div
+                    class="content"
+                    style="background-image: url(../imagenes/card3.jpg)"
+                  ></div>
+                </div>
+                <div class="image">
+                  <div
+                    class="content"
+                    style="background-image: url(../imagenes/card4.jpg)"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <button type="submit" class="btn btn-primary">Crear Evento</button>
       </form>
     </div>
     <script
@@ -218,5 +278,6 @@
       integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
       crossorigin="anonymous"
     ></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
