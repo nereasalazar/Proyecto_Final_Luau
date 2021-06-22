@@ -9,6 +9,7 @@
               class="d-block w-50 mx-auto rounded"
               alt="1"
             />
+            <h2>{{evento.nombreagasajado}}</h2>
           </div>
         </div>
       </div>
@@ -26,10 +27,10 @@
             <div class="card-body">
               <h5 class="card-title">¡Estas invitado a nuestra Fiesta!</h5>
               <h6 class="card-subtitle mb-2 text-muted">
-                Día: {{tarjeta.diaevento}}
+                Día: {{evento.diaevento}}
               </h6>
               <p class="card-text">
-                La misa se realizará en: {{tarjeta.lugarmisa}}
+                La misa se realizará en: {{evento.lugarmisa}}
               </p>
               <form action="class="container-fluid justify-content-start"">
                 <button class="btn btn-outline-success me-2" type="button">
@@ -39,7 +40,7 @@
           
               <p class="card-text">Horario: 19hs</p>
               <p class="card-text">
-                La fiesta se realizará en: Salón Hipocampo
+                La fiesta se realizará en: {{evento.lugarevento}}
               </p>
               <form action="class="container-fluid justify-content-start"">
                 <button class="btn btn-outline-success me-2" type="button">
@@ -82,8 +83,7 @@
             </div>
             <br>
             <br>
-            <p>Si deseas hacernos un regalo o colaborarnos nuestro CBU es:</p>
-            <p>{{{ cbu }}}</p>
+            <p>Si deseas hacernos un regalo o colaborarnos nuestro CBU es:{{{ evento.cbu }}}</p>
           </div>
         </div>
       </div>
