@@ -5,53 +5,58 @@
         <div class="col">
           <div class="text-center">
             <img
-              src="imagenes/pareja.jpg"
+              src="/imagenes/pareja.jpg"
               class="d-block w-50 mx-auto rounded"
               alt="1"
             />
-            <h2>{{evento.nombreagasajado}}</h2>
+            <h2>{{tarjeta.nombreAgasajado}}</h2>
+            <h5>¡Estas invitado a nuestra Fiesta!</h5>
           </div>
         </div>
       </div>
-      <br />
-      <div class="row">
+      {{!-- <div class="row">
         <div class="col">
           <div id="cuentaRegresiva"></div>
         </div>
-      </div>
-      
-      <div class="row">
-        <div class="col">
-          <!--Datos de la Tarjeta-->
-          <div class="card" style="width: 30rem">
-            <div class="card-body">
-              <h5 class="card-title">¡Estas invitado a nuestra Fiesta!</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                Día: {{evento.diaevento}}
-              </h6>
-              <p class="card-text">
-                La misa se realizará en: {{evento.lugarmisa}}
-              </p>
-              <form action="class="container-fluid justify-content-start"">
-                <button class="btn btn-outline-success me-2" type="button">
-                  ¿Cómo llegar?
-                </button>
-              </form>
-          
-              <p class="card-text">Horario: 19hs</p>
-              <p class="card-text">
-                La fiesta se realizará en: {{evento.lugarevento}}
-              </p>
-              <form action="class="container-fluid justify-content-start"">
-                <button class="btn btn-outline-success me-2" type="button">
-                  ¿Cómo llegar?
-                </button>
-              </form>
-              <p class="card-text">Horario: 21hs</p>
+      </div> --}}
             </div>
           </div>
         </div>
         <br />
+        </div>
+      </div>
+    </div>
+
+    <div class="card-group">
+  <div class="card">
+
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">
+        Día: {{tarjeta.diaEvento}}
+      </h6>
+      <p class="card-text">
+        La misa se realizará en: {{tarjeta.lugarMisa}}
+      </p>
+      <form action="class="container-fluid justify-content-start"">
+        <button class="btn btn-outline-success" type="button">
+          Ver en el Mapa
+        </button>
+      </form>         
+      <p class="card-text">Horario:{{tarjeta.horaMisa}}</p>
+      <p class="card-text">
+        La fiesta se realizará en: {{tarjeta.lugarEvento.nombre}}
+      </p>
+      <a href="/evento/mapaevento/{{tarjeta._id}}">
+        <button class="btn btn-outline-success" type="button">
+          Ver en el Mapa
+        </button>
+      </a>
+      <p class="card-text">Horario: {{tarjeta.horaEvento}}</p>
+
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
         <div class="row">
           <div class="col">
             <div class="form-group">
@@ -80,14 +85,17 @@
               <button type="button" class="btn btn-secondary btn-sm">
                 Confirmar Selección
               </button>
+            <br>
             </div>
             <br>
-            <br>
-            <p>Si deseas hacernos un regalo o colaborarnos nuestro CBU es:{{{ evento.cbu }}}</p>
+            <p>Si deseas hacernos un regalo o colaborarnos nuestro CBU es:{{ tarjeta.cbu }}</p>
           </div>
-        </div>
-      </div>
+      {{!-- <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
     </div>
+</div>
+
     <br />
     <script src="js/simplyCountdown.min.js"></script>
     <script src="js/countdown.js"></script>

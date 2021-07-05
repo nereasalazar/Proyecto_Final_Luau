@@ -1,53 +1,162 @@
+const { Router } = require("express");
+const fetch = require("node-fetch");
+const Usuario = require("../models/Usuario");
+const Evento = require("../models/Evento");
+const dateHelper = require("../helpers/dateHelper");
 
-app.get("/", function (req, res) {
-    res.render("pantalla_tarjeta");
+const router = Router();
+
+router.get("/", (req, response) => {
+  response.render("partials/login", { layout: "estructura" });
 });
 
-app.post("/login", function (req, res) {
-    for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].user === req.body.email && usuarios[i].pass === req.body.password) {
-            res.sendFile(path.join(__dirname, "html/panel_usuario.html"));
-        }
-    }
-    res.sendFile(path.join(__dirname, "html/index.html"));
-
+router.get("/login", (req, response) => {
+  response.render("partials/login", { layout: "estructura" });
 });
 
-app.post("/registro",function(request,response){
-    for(let i = 0; i < usuarios.lenght; i++){
-        if(usuarios[i].user === request.body.user){
-            response.sendFile(path.join(__dirname,"registro.html"));
-        }
+router.post("/login", async (req, response) => {
+  const listaUsuarios = await Usuario.find(); // usamos esquema usuario y el metodo find para traer los usuarios de la BD
+
+  for (let i = 0; i < listaUsuarios.length; i++) {
+    if (
+      listaUsuarios[i].email === req.body.email &&
+      listaUsuarios[i].password === req.body.password
+    ) {
+      response.redirect(303, "/panel");
     }
+  }
+  response.redirect(303, "/login");
+});
 
-    if(request.body.password === request.body.password2){
-        usuarios.push(
-            {
-                user: request.body.user,
-                pass: request.body.password
-            }
-        );
+router.get("/registro", (req, response) => {
+  response.render("partials/registro_usuarios", { layout: "estructura" });
+});
 
-        response.sendFile(path.join(__dirname,"login.html"));
-    }else{
-        response.sendFile(path.join(__dirname,"registro.html"));
-        
-    }
-})
+router.post("/altausuario", async (req, response) => {
+  const { email, password, repetirpassword } = req.body;
+  if (password !== repetirpassword) {
+    response.redirect(303, "/registro");
+  }
 
-app.get("/nuevoevento", function(request,response){
+  const newUsuario = new Usuario({
+    email: email,
+    password: password,
+  });
 
-    response.sendFile(path.join(__dirname,"html/formulario_fiesta.html"));
+  await newUsuario.save();
+  response.redirect(303, "/login");
+});
 
-})
+router.get("/panel", (req, response) => {
+  response.render("partials/panel_usuario", { layout: "estructura" });
+});
 
-app.get("/miseventos", function(request,response){
+router.get("/formulariofiesta", (req, response) => {
+  response.render("partials/formulario_fiesta", { layout: "formulario" });
+});
 
-    response.sendFile(path.join(__dirname,"html/tabla_eventos.html"));
+router.post("/crearevento", async (req, res) => {
+  try {
+    const {
+      nombreAgasajado,
+      numInvitados,
+      diaEvento,
+      horaEvento,
+      lugarEvento,
+      direccion,
+      localidad,
+      provincia,
+      codigoPostal,
+      iglesia,
+      horaMisa,
+      cuentaRegresiva,
+      cbu,
+    } = req.body;
+    console.log(req.body);
+    const token =
+      "pk.eyJ1IjoibmVyZWFzYWxhemFyIiwiYSI6ImNrcTV5YnhsdDB2ajYybnBmM3VjbXZqM2IifQ.uV3-VOvGmXP1NmB5iAgpRQ";
+    const direccionCompleta = `${lugarEvento} ${direccion} ${localidad} ${provincia}`;
+    const direccionFinal = direccionCompleta.replace(" ", "%20");
 
-})
+    const reqDireccion = `https://api.mapbox.com/geocoding/v5/mapbox.places/${direccionFinal}.json?country=AR&postcode=${codigoPostal}&limit=5&access_token=${token}`;
 
-app.post("/pantallatarjeta",function(request,response){
+    const response = await fetch(reqDireccion);
 
-    response.sendFile(path.join(__dirname,"html/pantalla_tarjeta.html"))
-})
+    const jsonResponse = await response.json();
+    const [latitud, longitud] = jsonResponse.features[0].center;
+
+    const newEvento = new Evento({
+        nombreAgasajado: nombreAgasajado,
+        diaEvento: diaEvento,
+        horaEvento: horaEvento,
+        lugarEvento: {
+        nombre: lugarEvento,
+        direccion: direccion,
+        provincia: provincia,
+        localidad: localidad,
+        codigoPostal: codigoPostal,
+        latitud: latitud,
+        longitud: longitud,
+      },
+        numInvitados: numInvitados,
+        lugarMisa: iglesia,
+        horaMisa: horaMisa,
+        cuentaRegresiva: cuentaRegresiva,
+        cbu: cbu,
+    });
+
+    await newEvento.save();
+    res.redirect(303, "/evento/tarjeta/" + newEvento._id); // 303 get que redirige a la ruta evento/tarjeta y lo concatena con el id de mi nuevo evento
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/evento/tarjeta/:id", async (req, response) => {
+  try {
+    const tarjeta = await Evento.findById(req.params.id).lean(); // convierto en objeto json
+
+    tarjeta.diaEvento = dateHelper.formatDate(tarjeta.diaEvento);
+    response.render("partials/tarjeta", {
+      layout: "pantalla_tarjeta",
+      tarjeta,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/listainvitados", (req, response) => {
+  response.render("partials/lista_invitados", { layout: "estructura" });
+});
+
+router.get("/panelinvitados", (req, response) => {
+  response.render("partials/panel_invitado", { layout: "estructura" });
+});
+
+router.get("/tablaeventos", (req, response) => {
+  response.render("partials/tabla_eventos", {
+    layout: "estructura",
+    lista_eventos,
+  });
+});
+
+router.get("/evento/mapaevento/:id", async (req, response) => {
+  try {
+    console.log(req.params.id);
+    const evento = await Evento.findById(req.params.id).lean();
+
+    const lat = evento.lugarEvento.latitud;
+    const lon = evento.lugarEvento.longitud;
+
+    response.render("layouts/mapa", {
+      layout: "mapa",
+      lat,
+      lon,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+module.exports = router;

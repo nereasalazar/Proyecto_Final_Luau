@@ -15,6 +15,9 @@
     "handlebars": "^4.7.7",
     "jquery": "^3.6.0",
     "mongodb": "^3.6.9",
-    "nodemon": "^2.0.7"
+    "mongoose": "^5.12.14",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7",
+    "request": "^2.88.2"
   }
 }

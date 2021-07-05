@@ -1,258 +1,244 @@
 <div class="general">
   <form action="/crearevento" method="post">
-    <div class="form-group">
-      <label for="inputDiaEvento">Día del Evento</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputDiaEvento"
-        placeholder="Dia Evento"
-        name="diaEvento"
-      />
-    </div>
-    <div class="form-group">
-      <label for="inputLugarEvento">Lugar del Evento</label>
-      <input
-        type="text"
-        class="form-control"
-        id="lugarEvento"
-        placeholder="Lugar Evento"
-        name="lugarEvento"
-      />
-    </div>
-    <br />
-    <div class="form-group">
-      <label for="inputHora">Hora del Evento </label>
-      <input
-        type="text"
-        class="form-control"
-        id="horaEvento"
-        placeholder="Hora Evento"
-        name="horaEvento"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="inputAgasajado">Agasajado/s</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputAgasajado"
-        name="nombreAgasajado"
-      />
-    </div>
-    <div class="form-group">
-      <label for="inputNumInvitados">Numero de Invitados</label>
-      <input
-        type="text"
-        class="form-control"
-        id="NumInvitados"
-        name="numInvitados"
-      />
-    </div>
-
-    <br />
-
-    <div class="form-group">
-      <label for="inputCRegresiva">Añadir cuenta regresiva</label>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="flexRadioDefault"
-          id="flexRadioCRegresiva1"
-        />
-        <label class="form-check-label" for="flexCRegresiva1"> Si </label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="flexRadioDefault"
-          id="flexRadioCRegresiva2"
-          checked
-        />
-        <label class="form-check-label" for="CRegresiva2"> No </label>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="form-group">
-      <label for="inputAgasajado">Petición de Colaboración/Regalo</label>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="flexRadioDefault"
-          id="flexRadioRegalo1"
-        />
-        <label class="form-check-label" for="flexRadioRegalo1"> Si </label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="flexRadioDefault"
-          id="flexRadioRegalo2"
-          checked
-        />
-        <label class="form-check-label" for="flexRadioRegalo2"> No </label>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="form-group">
-      <label for="inputCbuFormFiesta">CBU</label>
-      <input type="text" class="form-control" id="CbuFormFiesta" name="cbu" />
-    </div>
-
-    <br />
-
-    <div class="form-group">
-      <label for="input">Se realiza Misa</label>
-
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="flexRadioDefault"
-          id="siiglesia"
-        />
-        <label class="form-check-label" for="flexRadioMisa1"> Si </label>
-      </div>
-
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="flexRadioDefault"
-          id="noiglesia"
-        />
-        <label class="form-check-label" for="flexRadioMisa2" > No </label>
-      </div>
-
-      <br />
-    </div>
-
-    <div class="form-group">
-      <label for="inputIglesia">Iglesia</label>
-      <input type="text" class="form-control" id="iglesia" name="iglesia" />
-    </div>
-
-    <br />
-
-    <div class="dropdown">
-      <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        id="horaMisa"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Hora
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="dropdown">
-      <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        id="minutosMisa"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Minutos
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="mb-3">
-      <label for="formFile" class="form-label">Elegir Imagen para tu Tarjeta</label>
-      <input class="form-control" type="file" id="imagenTarjeta" />
-    </div>
-    <br />
-    <h2>Selecciona una Plantilla</h2>
-    <div class="gallery">
-      <div class="row">
-        <div class="col-3">
-          <div class="thumbs">
-            <div
-              class="thumb active"
-              style="background-image: url(../imagenes/card1.jpg)"
-            ></div>
-            <div
-              class="thumb"
-              style="background-image: url(../imagenes/card2.jpg)"
-            ></div>
-            <div
-              class="thumb"
-              style="background-image: url(../imagenes/card3.jpg)"
-            ></div>
-            <div
-              class="thumb"
-              style="background-image: url(../imagenes/card4.jpg)"
-            ></div>
-          </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <h5>Datos del Evento</h5>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAgasajado"
+            placeholder="Nombre/s Agasajado/s"
+            name="nombreAgasajado"
+          />
         </div>
-        <div class="col">
-          <div class="images">
-            <div class="image active">
-              <div
-                class="content"
-                style="background-image: url(../imagenes/card1.jpg)"
-              ></div>
+        <br>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="NumInvitados"
+            placeholder="Número de Invitados"
+            name="numInvitados"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="inputDiaEvento"
+            placeholder="Dia Evento"
+            name="diaEvento"
+          />
+        </div>
+        <br>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="horaEvento"
+            placeholder="Hora Evento"
+            name="horaEvento"
+          />
+        </div>
+        <br>
+        <div class="form-group">
+          <h5>Datos del Lugar del Evento<h5>
+          <br>
+          <input
+            type="text"
+            class="form-control"
+            id="nombreLugar"
+            placeholder="Nombre del Lugar"
+            name="lugarEvento"
+          />
+          <br>
+          <input
+            type="text"
+            class="form-control"
+            id="direccionLugar"
+            placeholder="Direccion del Lugar"
+            name="direccion"
+          />
+          <br>
+          <input
+            type="text"
+            class="form-control"
+            id="provincia"
+            placeholder="Provincia"
+            name="provincia"
+          />
+          <br>
+          <input
+            type="text"
+            class="form-control"
+            id="localidad"
+            placeholder="Localidad"
+            name="localidad"
+          />
+          <br>
+          <input
+            type="text"
+            class="form-control"
+            id="codigoPostal"
+            placeholder="Codigo Postal"
+            name="codigoPostal"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <h5>Datos de Misa</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="tieneMisa" onclick="manageMisa();">
+            <label class="form-check-label" for="tieneMisa">
+              Se realiza misa
+            </label>
+          </div>
+          <br>
+        </div>
+        <div class="form-group">
+          <input 
+            type="text" 
+            class="form-control"
+            id="iglesia" 
+            placeholder="Nombre Iglesia" 
+            name="iglesia" 
+            disabled />
+        </div>
+        <br>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="horaMisa"
+            placeholder="Hora Misa"
+            name="horaMisa"
+            disabled
+          />
+        </div>
+        <br>
+        <h5>Datos Extras</h5>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="cuentaRegresivaCheck" name="cuentaRegresiva"> 
+          <label class="form-check-label" for="cuentaRegresivaCheck">
+            Añadir cuenta regresiva
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="cbuCheckBox" onclick="manageCbu();">
+          <label class="form-check-label" for="cbuCheckBox">
+            Añadir CBU para petición de colaboración o Regalo
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input 
+            type="text" 
+            class="form-control"
+            id="cbu" 
+            placeholder="CBU" 
+            name="cbu" 
+            disabled />
+        </div>
+        <br>
+        <div class="mb-3">
+          <label for="formFile" class="form-label"><h5>Elegir Imagen para tu Tarjeta</h5></label>
+          <input class="form-control" type="file" id="imagenTarjeta" />
+        </div>
+        <br />
+      </div>
+      <div class="col-8">
+        <h2>Selecciona una Plantilla</h2>
+        <div class="gallery">
+          <div class="row">
+            <div class="col-3">
+              <div class="thumbs">
+                <div
+                  class="thumb active"
+                  style="background-image: url(../imagenes/card1.jpg)"
+                ></div>
+                <div
+                  class="thumb"
+                  style="background-image: url(../imagenes/card2.jpg)"
+                ></div>
+                <div
+                  class="thumb"
+                  style="background-image: url(../imagenes/card3.jpg)"
+                ></div>
+                <div
+                  class="thumb"
+                  style="background-image: url(../imagenes/card4.jpg)"
+                ></div>
+              </div>
             </div>
-            <div class="image">
-              <div
-                class="content"
-                style="background-image: url(../imagenes/card2.jpg)"
-              ></div>
-            </div>
-            <div class="image">
-              <div
-                class="content"
-                style="background-image: url(../imagenes/card3.jpg)"
-              ></div>
-            </div>
-            <div class="image">
-              <div
-                class="content"
-                style="background-image: url(../imagenes/card4.jpg)"
-              ></div>
+            <div class="col">
+              <div class="images">
+                <div class="image active">
+                  <div
+                    class="content"
+                    style="background-image: url(../imagenes/card1.jpg)"
+                  ></div>
+                </div>
+                <div class="image">
+                  <div
+                    class="content"
+                    style="background-image: url(../imagenes/card2.jpg)"
+                  ></div>
+                </div>
+                <div class="image">
+                  <div
+                    class="content"
+                    style="background-image: url(../imagenes/card3.jpg)"
+                  ></div>
+                </div>
+                <div class="image">
+                  <div
+                    class="content"
+                    style="background-image: url(../imagenes/card4.jpg)"
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Crear Evento</button>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Crear Evento</button>
   </form>
 </div>
+
 <script src="js/main.js"></script>
 <script>
-  $('#noiglesia').click(function(e) {
-    $('#iglesia').attr('disabled',true);
+  function manageMisa() {
+    let checked = document.getElementById('tieneMisa').hasAttribute('checked');
 
+    if(checked) {
+      document.getElementById('tieneMisa').removeAttribute('checked');
+      document.getElementById('iglesia').value = '';
+      document.getElementById('iglesia').setAttribute('disabled', '');
+      document.getElementById('horaMisa').setAttribute('disabled','');
+      
+    } else {
+      document.getElementById('tieneMisa').setAttribute('checked', '');
+      document.getElementById('iglesia').removeAttribute('disabled');
+      document.getElementById('horaMisa').removeAttribute('disabled');
+    }
   }
-  );
+
+  function manageCbu (){
+    let checkedCbu = document.getElementById('cbuCheckBox').hasAttribute('checked');
+
+    if (checkedCbu){
+      document.getElementById('cbuCheckBox').removeAttribute('checked');
+      document.getElementById('cbu').value='';
+      document.getElementById('cbu').setAttribute('disabled', '');
+    }else{
+      document.getElementById('cbuCheckBox').setAttribute('checked', '');
+      document.getElementById('cbu').removeAttribute('disabled');
+    }
+  }
   
-  $('#siiglesia').click(
-    $('#iglesia').prop('disabled',false);
-  );
 </script>

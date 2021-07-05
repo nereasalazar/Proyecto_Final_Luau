@@ -17,17 +17,21 @@
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""
     ></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+    type="text/css"
+  />
   </head>
   <body>
     <div id="mapid" style="height: 400px;"></div>
 
     <script>
-      var decodedJson = decodeURIComponent("{{{encodedJson}}}");
-      var {lat, lon} = JSON.parse(decodedJson);
-      var coordenadas = [lat, lon];
+      var coordenadas = ["{{{lon}}}", "{{{lat}}}"];
       var mymap = L.map("mapid").setView(coordenadas, 17);
 
-      L.tileLayer(
+      var mapboxTiles = L.tileLayer(
         "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibmVyZWFzYWxhemFyIiwiYSI6ImNrcTV5YnhsdDB2ajYybnBmM3VjbXZqM2IifQ.uV3-VOvGmXP1NmB5iAgpRQ",
         {
           maxZoom: 18,
@@ -40,8 +44,7 @@
         }
       ).addTo(mymap);
 
-      L.marker(coordenadas).addTo(mymap)
-		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+      L.marker(coordenadas).addTo(mymap).bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 
     </script>
   </body>

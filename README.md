@@ -4,7 +4,7 @@ _Luau es un proyecto que fué pensado para crear invitaciones para eventos de un
 _Luau también te brinda la posibilidad de llevar un control de las personas que asistirán a tu fiesta. Esto es posible porque las invitaciones cuentan con la opción de confirmar asistencia,y no sólo eso, se brinda un servicio de mapas para ayudar a los invitados a encontrar el lugar del evento._
 
 ---
-## Tecnologías utilizadas <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30">
+## Tecnologías utilizadas <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="60">
 
  - HTML <img align="left" alt="HTML5" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
  
