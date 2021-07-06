@@ -4,31 +4,31 @@ const Ubicacion = new Schema(
     {
       nombre: {
         type: String,
-        required: true,
+        required: false,
       },
       provincia: {
         type: String,
-        required: true,
+        required: false,
       },
       localidad: {
         type: String,
-        required: true,
+        required: false,
       },
       direccion: {
         type: String,
-        required: true,
+        required: false,
       },
       codigoPostal:{
         type: Number,
-        required: true,
+        required: false,
       },
       latitud: {
         type: Decimal128,
-        required: true,
+        required: false,
       },
       longitud: {
         type: Decimal128,
-        required: true,
+        required: false,
       },
     }
   );
@@ -58,12 +58,12 @@ const nuevoEvento = new Schema({
         type: Number,
         required:true,
     },
-    conMisa:{
+    tieneMisa:{
         type: Boolean,
-        required: false,
+        required: true,
     },
     lugarMisa:{
-        type: String,
+        type: Ubicacion,
         required: false,
     },
     horaMisa:{

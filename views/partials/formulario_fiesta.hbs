@@ -51,7 +51,7 @@
             class="form-control"
             id="nombreLugar"
             placeholder="Nombre del Lugar"
-            name="lugarEvento"
+            name="nombreLugarEvento"
           />
           <br>
           <input
@@ -59,7 +59,7 @@
             class="form-control"
             id="direccionLugar"
             placeholder="Direccion del Lugar"
-            name="direccion"
+            name="direccionEvento"
           />
           <br>
           <input
@@ -67,7 +67,7 @@
             class="form-control"
             id="provincia"
             placeholder="Provincia"
-            name="provincia"
+            name="provinciaEvento"
           />
           <br>
           <input
@@ -75,7 +75,7 @@
             class="form-control"
             id="localidad"
             placeholder="Localidad"
-            name="localidad"
+            name="localidadEvento"
           />
           <br>
           <input
@@ -83,14 +83,14 @@
             class="form-control"
             id="codigoPostal"
             placeholder="Codigo Postal"
-            name="codigoPostal"
+            name="codigoPostalEvento"
           />
         </div>
         <br />
         <div class="form-group">
           <h5>Datos de Misa</h5>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="tieneMisa" onclick="manageMisa();">
+            <input class="form-check-input" type="checkbox" value="" id="tieneMisa" name="tieneMisa" onclick="manageMisa();">
             <label class="form-check-label" for="tieneMisa">
               Se realiza misa
             </label>
@@ -100,17 +100,48 @@
         <div class="form-group">
           <input 
             type="text" 
-            class="form-control"
-            id="iglesia" 
+            class="form-control clase-iglesia"
             placeholder="Nombre Iglesia" 
-            name="iglesia" 
-            disabled />
-        </div>
-        <br>
-        <div class="form-group">
+            name="nombreIglesia" 
+            disabled 
+          />
+            
+          <br>
           <input
             type="text"
-            class="form-control"
+            class="form-control clase-iglesia"
+            placeholder="Direccion del Lugar"
+            name="direccionIglesia"
+            disabled 
+          />
+          <br>
+          <input
+            type="text"
+            class="form-control clase-iglesia"
+            placeholder="Provincia"
+            name="provinciaIglesia"
+            disabled 
+          />
+          <br>
+          <input
+            type="text"
+            class="form-control clase-iglesia"
+            placeholder="Localidad"
+            name="localidadIglesia"
+            disabled 
+          />
+          <br>
+          <input
+            type="text"
+            class="form-control clase-iglesia"
+            placeholder="Codigo Postal"
+            name="codigoPostalIglesia"
+            disabled 
+          />
+        <br>
+          <input
+            type="text"
+            class="form-control clase-iglesia"
             id="horaMisa"
             placeholder="Hora Misa"
             name="horaMisa"
@@ -213,18 +244,24 @@
 <script src="js/main.js"></script>
 <script>
   function manageMisa() {
-    let checked = document.getElementById('tieneMisa').hasAttribute('checked');
+    let elements = document.getElementsByClassName('clase-iglesia');
+    let misa = document.getElementById('tieneMisa');
+    let checked = misa.hasAttribute('checked');
 
     if(checked) {
-      document.getElementById('tieneMisa').removeAttribute('checked');
-      document.getElementById('iglesia').value = '';
-      document.getElementById('iglesia').setAttribute('disabled', '');
-      document.getElementById('horaMisa').setAttribute('disabled','');
+      misa.removeAttribute('checked');
+      
+      for(let item of elements){
+        item.value = '';
+        item.setAttribute('disabled', '');
+      }
       
     } else {
-      document.getElementById('tieneMisa').setAttribute('checked', '');
-      document.getElementById('iglesia').removeAttribute('disabled');
-      document.getElementById('horaMisa').removeAttribute('disabled');
+      misa.setAttribute('checked', '');
+
+      for(let item of elements){
+        item.removeAttribute('disabled');
+      }
     }
   }
 

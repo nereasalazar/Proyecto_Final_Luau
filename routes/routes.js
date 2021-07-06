@@ -62,47 +62,58 @@ router.post("/crearevento", async (req, res) => {
       numInvitados,
       diaEvento,
       horaEvento,
-      lugarEvento,
-      direccion,
-      localidad,
-      provincia,
-      codigoPostal,
-      iglesia,
+      nombreLugarEvento,
+      direccionEvento,
+      localidadEvento,
+      provinciaEvento,
+      codigoPostalEvento,
+      tieneMisa,
+      nombreIglesia,
+      direccionIglesia,
+      localidadIglesia,
+      provinciaIglesia,
+      codigoPostalIglesia,
       horaMisa,
       cuentaRegresiva,
       cbu,
     } = req.body;
-    console.log(req.body);
-    const token =
-      "pk.eyJ1IjoibmVyZWFzYWxhemFyIiwiYSI6ImNrcTV5YnhsdDB2ajYybnBmM3VjbXZqM2IifQ.uV3-VOvGmXP1NmB5iAgpRQ";
-    const direccionCompleta = `${lugarEvento} ${direccion} ${localidad} ${provincia}`;
-    const direccionFinal = direccionCompleta.replace(" ", "%20");
 
-    const reqDireccion = `https://api.mapbox.com/geocoding/v5/mapbox.places/${direccionFinal}.json?country=AR&postcode=${codigoPostal}&limit=5&access_token=${token}`;
-
-    const response = await fetch(reqDireccion);
-
-    const jsonResponse = await response.json();
-    const [latitud, longitud] = jsonResponse.features[0].center;
+    const direccionLugarEvento = `${nombreLugarEvento} ${direccionEvento} ${localidadEvento} ${provinciaEvento}`;
+    const [latitudEvento, longitudEvento] = await getLatitudLongitud(direccionLugarEvento, codigoPostalEvento);
+    
+    let latitudIglesia, longitudIglesia;
+    if(tieneMisa == ''){
+      const direccionMisa = `${nombreIglesia} ${direccionIglesia} ${localidadIglesia} ${provinciaIglesia}`;
+      [latitudIglesia, longitudIglesia] = await getLatitudLongitud(direccionMisa, codigoPostalIglesia);
+    };
 
     const newEvento = new Evento({
-        nombreAgasajado: nombreAgasajado,
-        diaEvento: diaEvento,
-        horaEvento: horaEvento,
-        lugarEvento: {
-        nombre: lugarEvento,
-        direccion: direccion,
-        provincia: provincia,
-        localidad: localidad,
-        codigoPostal: codigoPostal,
-        latitud: latitud,
-        longitud: longitud,
+      nombreAgasajado: nombreAgasajado,
+      diaEvento: diaEvento,
+      horaEvento: horaEvento,
+      lugarEvento: {
+        nombre: nombreLugarEvento,
+        direccion: direccionEvento,
+        provincia: provinciaEvento,
+        localidad: localidadEvento,
+        codigoPostal: codigoPostalEvento,
+        latitud: latitudEvento,
+        longitud: longitudEvento,
       },
-        numInvitados: numInvitados,
-        lugarMisa: iglesia,
-        horaMisa: horaMisa,
-        cuentaRegresiva: cuentaRegresiva,
-        cbu: cbu,
+      numInvitados: numInvitados,
+      tieneMisa: tieneMisa == "" ? true : false,
+      lugarMisa:{
+        nombre: nombreIglesia,
+        direccion: direccionIglesia,
+        provincia: provinciaIglesia,
+        localidad: localidadIglesia,
+        codigoPostal: codigoPostalIglesia,
+        latitud: latitudIglesia,
+        longitud: longitudIglesia,
+      },
+      horaMisa: horaMisa,
+      cuentaRegresiva: cuentaRegresiva == "" ? true : false,
+      cbu: cbu,
     });
 
     await newEvento.save();
@@ -117,6 +128,7 @@ router.get("/evento/tarjeta/:id", async (req, response) => {
     const tarjeta = await Evento.findById(req.params.id).lean(); // convierto en objeto json
 
     tarjeta.diaEvento = dateHelper.formatDate(tarjeta.diaEvento);
+
     response.render("partials/tarjeta", {
       layout: "pantalla_tarjeta",
       tarjeta,
@@ -135,28 +147,62 @@ router.get("/panelinvitados", (req, response) => {
 });
 
 router.get("/tablaeventos", (req, response) => {
+
   response.render("partials/tabla_eventos", {
     layout: "estructura",
     lista_eventos,
   });
 });
 
-router.get("/evento/mapaevento/:id", async (req, response) => {
+router.get("/evento/mapaevento/:tipo&:id", async (req, response) => {
   try {
-    console.log(req.params.id);
     const evento = await Evento.findById(req.params.id).lean();
+    let nombre;
+    let lat, lon = 0;
 
-    const lat = evento.lugarEvento.latitud;
-    const lon = evento.lugarEvento.longitud;
+    if (req.params.tipo == "evento") {
+      lat = evento.lugarEvento.latitud;
+      lon = evento.lugarEvento.longitud;
+      nombre = `${evento.lugarEvento.nombre}, ${evento.lugarEvento.direccion}, ${evento.lugarEvento.localidad}`;
+    }
+    if (req.params.tipo == "iglesia") {
+      lat = evento.lugarMisa.latitud;
+      lon = evento.lugarMisa.longitud;
+      nombre = `${evento.lugarMisa.nombre}, ${evento.lugarMisa.direccion}, ${evento.lugarMisa.localidad}`;
+    }
+    if (lat == 0 && lon == 0) {
+      response.render("solicitud de mapa incorrecta");
+      return;
+    }
 
     response.render("layouts/mapa", {
       layout: "mapa",
       lat,
       lon,
+      nombre
     });
   } catch (error) {
     console.log(error);
   }
 });
+
+async function getLatitudLongitud(direccion, codigoPostal) {
+  try {
+    const token = "pk.eyJ1IjoibmVyZWFzYWxhemFyIiwiYSI6ImNrcTV5YnhsdDB2ajYybnBmM3VjbXZqM2IifQ.uV3-VOvGmXP1NmB5iAgpRQ";
+
+    const direccionFinal = direccion.replace(" ", "%20");
+
+    const reqDireccion = `https://api.mapbox.com/geocoding/v5/mapbox.places/${direccionFinal}.json?country=AR&postcode=${codigoPostal}&limit=5&access_token=${token}`;
+
+    const response = await fetch(reqDireccion);
+
+    const jsonResponse = await response.json();
+
+    return jsonResponse.features[0].center;
+
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 module.exports = router;

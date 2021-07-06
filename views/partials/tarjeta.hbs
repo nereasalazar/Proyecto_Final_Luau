@@ -29,24 +29,27 @@
 
     <div class="card-group">
   <div class="card">
-
     <div class="card-body">
       <h6 class="card-subtitle mb-2 text-muted">
         Día: {{tarjeta.diaEvento}}
       </h6>
-      <p class="card-text">
-        La misa se realizará en: {{tarjeta.lugarMisa}}
-      </p>
-      <form action="class="container-fluid justify-content-start"">
-        <button class="btn btn-outline-success" type="button">
-          Ver en el Mapa
-        </button>
-      </form>         
-      <p class="card-text">Horario:{{tarjeta.horaMisa}}</p>
+
+      {{#if tarjeta.tieneMisa}}
+        <p class="card-text">
+          La misa se realizará en: {{tarjeta.lugarMisa.nombre}}
+        </p>
+        <a href="/evento/mapaevento/iglesia&{{tarjeta._id}}">
+          <button class="btn btn-outline-success" type="button">
+            Ver en el Mapa
+          </button>
+        </a>         
+        <p class="card-text">Horario: {{tarjeta.horaMisa}}</p>
+      {{/if}}
+      
       <p class="card-text">
         La fiesta se realizará en: {{tarjeta.lugarEvento.nombre}}
       </p>
-      <a href="/evento/mapaevento/{{tarjeta._id}}">
+      <a href="/evento/mapaevento/evento&{{tarjeta._id}}">
         <button class="btn btn-outline-success" type="button">
           Ver en el Mapa
         </button>
