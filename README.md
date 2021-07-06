@@ -21,3 +21,9 @@ _Luau también te brinda la posibilidad de llevar un control de las personas que
 - Mongo DB <img align="left" alt="MongoDB" width="50px" src="./public/imagenes/mongodb.png" />
 
 - Handlebars <img align="left" alr="Handlebars" width="50px" src="https://i0.wp.com/blog.fossasia.org/wp-content/uploads/2017/07/handlebars-js.png?fit=500%2C500&ssl=1" />
+
+## Capturas de Pantalla
+
+<img src="public/imagenes/pantallalogin.jpg">
+
+<img src="public/imagenes/formulario fiesta.jpg">
