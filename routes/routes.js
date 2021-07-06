@@ -146,7 +146,12 @@ router.get("/panelinvitados", (req, response) => {
   response.render("partials/panel_invitado", { layout: "estructura" });
 });
 
-router.get("/tablaeventos", (req, response) => {
+router.get("/tablaeventos", async (req, response) => {
+  const lista_eventos = await Evento.find().lean();
+
+  lista_eventos.forEach(evento => {
+    evento.diaEvento = dateHelper.formatDate(evento.diaEvento);
+  });
 
   response.render("partials/tabla_eventos", {
     layout: "estructura",
